@@ -1,0 +1,118 @@
+<?php
+
+/**
+ * 
+ */
+class Sl147_TB extends Sl147_TB_main{
+
+    function __construct()  {        
+        $this->option_name_tel     = 'sl147_bd_tel_'.PLUGIN_TB_TEXT_DOMAIN;
+        $this->option_name_laptop  = 'sl147_bd_laptop_'.PLUGIN_TB_TEXT_DOMAIN;
+    }
+
+    /**
+     * shortcode. Place [sl147_TB_display] in header.php after <body>
+     * 
+     */ 
+    public function sl147_TB_output_shortcode() {
+        $val        = get_option($this->option_name);
+        $val_tel    = get_option($this->option_name_tel);
+        $val_laptop = get_option($this->option_name_laptop);
+        $button = '';
+        if($val[$this->tb_active]) {
+            if( !(htmlspecialchars($_COOKIE["sl147_tb"]) == $val[$this->tb_text_option]) || ($val[$this->tb_active_non_stop]) ) {
+                $button = '
+                <div class="sl147_TB_block">
+                <div class="sl147_tb_notice">
+                <span class="sl147_span">'.
+                $val[$this->tb_text_option].
+                '</span>';
+                $button .= '
+                <button title="'.__("Close top bar", 'simple-top-bar').'" type="button" class="sl147_notice_dismiss" style="background-color:' . $val[$this->tb_background_color] . '!important; border: 0!important;">
+                    <i style="cursor: pointer; color:'.$val[$this->tb_font_color].';" class="fa fa-times-circle" aria-hidden="true"></i>
+                </button>
+                </div></div>';
+                
+                $button .= '
+                    <style>                      
+                        
+                        .sl147_tb_notice {
+                            color:'.$val[$this->tb_font_color].';
+                            font-size:'.$val_laptop[$this->tb_font_size_laptop].'px;
+                            background-color:'.$val[$this->tb_background_color].';
+                            height:'.$val_laptop[$this->tb_block_height_laptop].'px;
+                            display: flex;
+                            display: -webkit-flex;
+                            align-items: center;
+                            justify-content: center;                           
+                            z-index:99999;
+                            width:80%;
+							border-radius: 10px;
+                            position:' . $val[$this->tb_position] . ';';
+                if ($val[$this->tb_updown] == 'up') {
+                    $button .= 'top:0;';
+                }else{
+                    $button .= 'bottom:0;';
+                }
+
+                $button .= '}';   
+                $button .= '@media screen and (max-width: 576px) {
+                            .sl147_tb_notice {
+                                font-size:'.$val_tel[$this->tb_font_size_tel].'px;
+                                height:'.$val_tel[$this->tb_block_height_tel].'px;
+                                padding-left: 10px;
+                                padding-right: 10px;
+                            }                           
+                        }                       
+                        .sl147_notice_dismiss:before {
+                            background: 0 0;
+                            color: '.$val[$this->tb_font_color].';
+                            display: block;
+                            font: normal 16px/20px dashicons;
+                            height: 20px;
+                            text-align: center;
+                            width: 20px;
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale
+                        }
+                    </style>
+                    ';
+            $button .= '
+                <script>
+                    function setPopUpCookie() {
+                        Cookies.set("sl147_tb", "'.$val[$this->tb_text_option].'")
+                        console.log("sl147_tb "+"'.$val[$this->tb_text_option].'")
+                        return true;
+                    }
+                    function getCookie(name) {
+                        let matches = document.cookie.match(new RegExp(
+                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"
+                        ));
+                        return matches ? decodeURIComponent(matches[1]) : undefined;
+                    }
+                    jQuery(".sl147_notice_dismiss").click(function() {
+                        jQuery(".sl147_tb_notice").remove();
+                        setPopUpCookie();
+                        })
+                </script>
+                ';
+            }
+        }
+        
+        ?>
+        <?php
+
+        return $button;
+    }
+
+    /**
+     * Start class
+     * 
+     * @return void
+     */
+
+    public function run(){
+        add_shortcode('sl147_TB_display', array($this, 'sl147_TB_output_shortcode'));
+        echo do_shortcode( '[sl147_TB_display]' );
+    }
+}
