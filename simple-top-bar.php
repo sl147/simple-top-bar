@@ -24,14 +24,12 @@ define( 'PLUGIN_TB_NAME', 'simple-top-bar');
 
 function sl147_TB_textdomain() {
     $locale = determine_locale();
-    //load_plugin_textdomain( 'simple-top-bar', false, PLUGIN_TB_DIR_PATH . 'languages/' );
-    //load_plugin_textdomain( 'simple-top-bar', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	load_plugin_textdomain( 'simple-top-bar', false, plugin_dir_path(__FILE__) . 'languages' );
 }
 add_action('plugins_loaded', 'sl147_TB_textdomain');
 
 function deactivate_sl147_TB() {
-    require_once WP_PLUGIN_DIR . '/sl147_TB/includes/class-sl147_TB-deactivator.php';
+    require_once PLUGIN_TB_DIR_PATH . 'includes/class-sl147_TB-deactivator.php';
     Sl147_TB_Deactivator::deactivate();
 }
 register_deactivation_hook( __FILE__, 'deactivate_sl147_TB' );
@@ -70,11 +68,9 @@ function sl147_TB_admin_style(){
 function sl147_TB_front_style(){
     wp_enqueue_style( 'sl147_TB_front_css', plugins_url( 'assets/css/sl147_tb_front.css', __FILE__ ) , array());
 	wp_enqueue_script( 'sl147_TB_front_js', plugins_url( 'assets/js/sl147_tb_front.js', __FILE__ ) , array('jquery'));
-	//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.1.0', true ); 
 }
 
 require_once PLUGIN_TB_DIR_PATH . 'includes/class-sl147_TB_main.php';
-//$plugin_main  = new Sl147_TB_main();
 
 if(is_admin()) {
     require_once PLUGIN_TB_DIR_PATH . 'admin/partials/class-sl147_TB_admin.php';  

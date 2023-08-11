@@ -100,7 +100,7 @@ class Sl147_TB extends Sl147_TB_main{
         
         ?>
         <?php
-
+echo $button;
         return $button;
     }
 
@@ -114,7 +114,6 @@ class Sl147_TB extends Sl147_TB_main{
      */
 
     public function run(){
-        add_shortcode('sl147_TB_display', array($this, 'sl147_TB_output_shortcode'));
-        add_action('wp_head', array ($this, 'sl147_TB_display'));       
+        add_action("wp_head", array ($this, "sl147_TB_output_shortcode"));    
     }
 }

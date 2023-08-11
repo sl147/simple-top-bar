@@ -116,7 +116,7 @@ class Sl147_TB_admin extends Sl147_TB_main {
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required' => true,
-                        'check_min'   => 10,
+                        'check_min'   => 30,
                         'check_max'   => 100
                 ),
             ),
@@ -141,7 +141,7 @@ class Sl147_TB_admin extends Sl147_TB_main {
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required' => true,
-                        'check_min'   => 10,
+                        'check_min'   => 30,
                         'check_max'   => 150
                 ),
             ),
