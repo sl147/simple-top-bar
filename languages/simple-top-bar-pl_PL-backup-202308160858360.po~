@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-19 11:59+0000\n"
-"PO-Revision-Date: 2023-08-16 09:06+0000\n"
+"PO-Revision-Date: 2023-08-16 08:50+0000\n"
 "Last-Translator: Jarosław\n"
 "Language-Team: Polski\n"
 "Language: pl_PL\n"
@@ -19,32 +19,31 @@ msgstr ""
 #. Description of the plugin
 msgid "<code><strong>Simple top bar</strong></code>Customizer for top bar"
 msgstr ""
-"<code><strong>Prosty górny pasek</strong></code>Dostosowanie górnego paska"
 
 #: admin/partials/class-sl147_TB_admin.php:49
 msgid "Active top bar"
-msgstr "Aktywny górny pasek"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:55
 msgid "Active top bar non stop"
-msgstr "Aktywny górny pasek non stop"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:19
 msgid "Background color"
-msgstr "Kolor tła"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:62
 #, php-format
 msgid "Bar width (%%)"
-msgstr "Szerokość paska (%%)"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:73
 msgid "Border radius (px)"
-msgstr "Zaokrąglenie paska (px)"
+msgstr ""
 
 #: includes/class-sl147_TB.php:26
 msgid "Close top bar"
-msgstr "Zamknij górny pasek"
+msgstr ""
 
 #: simple-top-bar.php:57
 msgid "Custom top bar"
@@ -52,43 +51,41 @@ msgstr "Górny pasek"
 
 #: admin/partials/class-sl147_TB_admin.php:186
 msgid "Down"
-msgstr "Na dole strony"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:178
-#| msgid "fixed"
-msgid "Fixed"
-msgstr "Nieruchomy"
+msgid "fixed"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:29
 msgid "Font color"
-msgstr "Kolor czcionki"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:104
 #: admin/partials/class-sl147_TB_admin.php:129
 msgid "Font size (px)"
-msgstr "Rozmiar czcionki (px.)"
+msgstr ""
 
 #: settings/sl147_class_settings.php:177 settings/sl147_class_settings.php:389
 msgid "General"
-msgstr "Ogólne"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:115
 #: admin/partials/class-sl147_TB_admin.php:140
 msgid "Height top bar (px)"
-msgstr "Wysokośc  górnego paska (px)"
+msgstr ""
 
 #. URI of the plugin
 msgid "https://vaolab.pl/"
-msgstr "https://vaolab.pl/"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.gomgal.lviv.ua/topBar"
-msgstr "https://www.gomgal.lviv.ua/topBar"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:177
-#| msgid "movable"
-msgid "Movable"
-msgstr "Ruchomy"
+msgid "movable"
+msgstr ""
 
 #: settings/sl147_class_settings.php:195
 msgid "On laptop"
@@ -103,25 +100,17 @@ msgstr ""
 msgid "Position"
 msgstr "Pozycja"
 
-#: settings/sl147_class_settings.php:391
-msgid "Screen width < 576px"
-msgstr "Szerokość ekranu < 576px"
-
-#: settings/sl147_class_settings.php:390
-msgid "Screen width > 576px"
-msgstr "Szerokość ekranu < 576px"
-
 #: simple-top-bar.php:39 simple-top-bar.php:51 simple-top-bar.php:57
 msgid "Settings"
 msgstr "Ustawienia"
 
 #. Name of the plugin
 msgid "Simple top bar"
-msgstr "Górny pasek"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:39
 msgid "Text in top bar"
-msgstr "Tekst w górnym pasku"
+msgstr ""
 
 #: admin/partials/class-sl147_TB_admin.php:185
 msgid "Up"
@@ -129,7 +118,15 @@ msgstr "Góra"
 
 #: admin/partials/class-sl147_TB_admin.php:94
 msgid "Up Down"
-msgstr "Góra dół"
+msgstr ""
+
+#: settings/sl147_class_settings.php:391
+msgid "Width < 576px"
+msgstr ""
+
+#: settings/sl147_class_settings.php:390
+msgid "Width > 576px"
+msgstr ""
 
 #. Author of the plugin
 msgid "Yaroslav Livchak"

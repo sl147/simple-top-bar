@@ -91,7 +91,7 @@ class Sl147_TB_admin extends Sl147_TB_main {
             'updown' => 
                 array (
                     'id_option'    => $this->tb_updown,
-                    'label_option' => __('UpDown', 'simple-top-bar'),
+                    'label_option' => __('Up Down', 'simple-top-bar'),
                     'type_option'  => 'radio',
                     'radio_options'=> $this->sl147_get_updown()
                 ),
@@ -174,8 +174,8 @@ class Sl147_TB_admin extends Sl147_TB_main {
 
     private function sl147_get_position(){
         $val = [
-            'standard' => $this->set_radio('absolute', __('standard', 'simple-top-bar')),
-            'fixed'    => $this->set_radio('fixed',    __('fixed',    'simple-top-bar'))
+            'standard' => $this->set_radio('absolute', __('Movable', 'simple-top-bar')),
+            'fixed'    => $this->set_radio('fixed',    __('Fixed',    'simple-top-bar'))
         ];
         return $this->sl147_form_radio($val);
     }

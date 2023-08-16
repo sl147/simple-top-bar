@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-19 11:59+0000\n"
-"PO-Revision-Date: 2023-08-16 09:06+0000\n"
+"PO-Revision-Date: 2023-08-16 09:05+0000\n"
 "Last-Translator: Jarosław\n"
 "Language-Team: Polski\n"
 "Language: pl_PL\n"
@@ -55,6 +55,7 @@ msgid "Down"
 msgstr "Na dole strony"
 
 #: admin/partials/class-sl147_TB_admin.php:178
+#, fuzzy
 #| msgid "fixed"
 msgid "Fixed"
 msgstr "Nieruchomy"
@@ -86,6 +87,7 @@ msgid "https://www.gomgal.lviv.ua/topBar"
 msgstr "https://www.gomgal.lviv.ua/topBar"
 
 #: admin/partials/class-sl147_TB_admin.php:177
+#, fuzzy
 #| msgid "movable"
 msgid "Movable"
 msgstr "Ruchomy"
@@ -105,11 +107,11 @@ msgstr "Pozycja"
 
 #: settings/sl147_class_settings.php:391
 msgid "Screen width < 576px"
-msgstr "Szerokość ekranu < 576px"
+msgstr ""
 
 #: settings/sl147_class_settings.php:390
 msgid "Screen width > 576px"
-msgstr "Szerokość ekranu < 576px"
+msgstr ""
 
 #: simple-top-bar.php:39 simple-top-bar.php:51 simple-top-bar.php:57
 msgid "Settings"

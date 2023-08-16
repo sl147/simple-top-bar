@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-19 11:59+0000\n"
-"PO-Revision-Date: 2023-08-16 09:06+0000\n"
+"PO-Revision-Date: 2023-08-16 08:59+0000\n"
 "Last-Translator: Jarosław\n"
 "Language-Team: Polski\n"
 "Language: pl_PL\n"
@@ -55,8 +55,7 @@ msgid "Down"
 msgstr "Na dole strony"
 
 #: admin/partials/class-sl147_TB_admin.php:178
-#| msgid "fixed"
-msgid "Fixed"
+msgid "fixed"
 msgstr "Nieruchomy"
 
 #: admin/partials/class-sl147_TB_admin.php:29
@@ -86,8 +85,7 @@ msgid "https://www.gomgal.lviv.ua/topBar"
 msgstr "https://www.gomgal.lviv.ua/topBar"
 
 #: admin/partials/class-sl147_TB_admin.php:177
-#| msgid "movable"
-msgid "Movable"
+msgid "movable"
 msgstr "Ruchomy"
 
 #: settings/sl147_class_settings.php:195
@@ -102,14 +100,6 @@ msgstr ""
 #: admin/partials/class-sl147_TB_admin.php:87
 msgid "Position"
 msgstr "Pozycja"
-
-#: settings/sl147_class_settings.php:391
-msgid "Screen width < 576px"
-msgstr "Szerokość ekranu < 576px"
-
-#: settings/sl147_class_settings.php:390
-msgid "Screen width > 576px"
-msgstr "Szerokość ekranu < 576px"
 
 #: simple-top-bar.php:39 simple-top-bar.php:51 simple-top-bar.php:57
 msgid "Settings"
@@ -130,6 +120,14 @@ msgstr "Góra"
 #: admin/partials/class-sl147_TB_admin.php:94
 msgid "Up Down"
 msgstr "Góra dół"
+
+#: settings/sl147_class_settings.php:391
+msgid "Width < 576px"
+msgstr "Szerokość < 576 px"
+
+#: settings/sl147_class_settings.php:390
+msgid "Width > 576px"
+msgstr ""
 
 #. Author of the plugin
 msgid "Yaroslav Livchak"

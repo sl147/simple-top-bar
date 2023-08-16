@@ -387,8 +387,8 @@ class Sl147_class_TB_settings {
      */ 
 	public function sl147_form_display() {
 		$tab_general   = __( 'General',   'simple-top-bar' ); 
-	    $tab_on_laptop = __( 'On laptop', 'simple-top-bar' );
-	    $tab_on_phone  = __( 'On phone',  'simple-top-bar' );
+	    $tab_on_laptop = __( 'Screen width > 576px', 'simple-top-bar' );
+	    $tab_on_phone  = __( 'Screen width < 576px', 'simple-top-bar' );
 			
 		$tabs = array(
 	        'general'   => $tab_general, 

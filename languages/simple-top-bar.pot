@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-19 11:59+0000\n"
+"POT-Creation-Date: 2023-08-16 09:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "<code><strong>Simple top bar</strong></code>Customizer for top bar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:46
+#: admin/partials/class-sl147_TB_admin.php:49
 msgid "Active top bar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:51
+#: admin/partials/class-sl147_TB_admin.php:55
 msgid "Active top bar non stop"
 msgstr ""
 
@@ -32,29 +32,46 @@ msgstr ""
 msgid "Background color"
 msgstr ""
 
-#: simple-top-bar.php:58
+#: admin/partials/class-sl147_TB_admin.php:62
+#, php-format
+msgid "Bar width (%%)"
+msgstr ""
+
+#: admin/partials/class-sl147_TB_admin.php:73
+msgid "Border radius (px)"
+msgstr ""
+
+#: includes/class-sl147_TB.php:26
+msgid "Close top bar"
+msgstr ""
+
+#: simple-top-bar.php:57
 msgid "Custom top bar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:155
+#: admin/partials/class-sl147_TB_admin.php:186
 msgid "Down"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:141
-msgid "fixed"
+#: admin/partials/class-sl147_TB_admin.php:178
+msgid "Fixed"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:28
+#: admin/partials/class-sl147_TB_admin.php:29
 msgid "Font color"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:70
 #: admin/partials/class-sl147_TB_admin.php:104
+#: admin/partials/class-sl147_TB_admin.php:129
 msgid "Font size (px)"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:80
-#: admin/partials/class-sl147_TB_admin.php:93
+#: settings/sl147_class_settings.php:177 settings/sl147_class_settings.php:389
+msgid "General"
+msgstr ""
+
+#: admin/partials/class-sl147_TB_admin.php:115
+#: admin/partials/class-sl147_TB_admin.php:140
 msgid "Height top bar (px)"
 msgstr ""
 
@@ -66,11 +83,32 @@ msgstr ""
 msgid "https://www.gomgal.lviv.ua/topBar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:56
+#: admin/partials/class-sl147_TB_admin.php:177
+msgid "Movable"
+msgstr ""
+
+#: settings/sl147_class_settings.php:195
+msgid "On laptop"
+msgstr ""
+
+#: settings/sl147_class_settings.php:204
+msgid "On phone"
+msgstr ""
+
+#: settings/sl147_class_settings.php:186
+#: admin/partials/class-sl147_TB_admin.php:87
 msgid "Position"
 msgstr ""
 
-#: simple-top-bar.php:40 simple-top-bar.php:52 simple-top-bar.php:58
+#: settings/sl147_class_settings.php:391
+msgid "Screen width < 576px"
+msgstr ""
+
+#: settings/sl147_class_settings.php:390
+msgid "Screen width > 576px"
+msgstr ""
+
+#: simple-top-bar.php:39 simple-top-bar.php:51 simple-top-bar.php:57
 msgid "Settings"
 msgstr ""
 
@@ -78,20 +116,16 @@ msgstr ""
 msgid "Simple top bar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:137
-msgid "standard"
-msgstr ""
-
-#: admin/partials/class-sl147_TB_admin.php:37
+#: admin/partials/class-sl147_TB_admin.php:39
 msgid "Text in top bar"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:151
+#: admin/partials/class-sl147_TB_admin.php:185
 msgid "Up"
 msgstr ""
 
-#: admin/partials/class-sl147_TB_admin.php:62
-msgid "UpDown"
+#: admin/partials/class-sl147_TB_admin.php:94
+msgid "Up Down"
 msgstr ""
 
 #. Author of the plugin
