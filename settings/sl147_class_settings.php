@@ -192,7 +192,7 @@ class Sl147_class_TB_settings {
      * @return void
      */ 
 	public function sl147_display_section_laptop() :void{
-		$this->sl147_display_section( __( 'On laptop', 'simple-top-bar' ) );
+		$this->sl147_display_section( __( 'Screen width > 576px', 'simple-top-bar' ) );
 	}
 	
     /**
@@ -201,7 +201,7 @@ class Sl147_class_TB_settings {
      * @return void
      */ 
 	public function sl147_display_section_tel() :void{
-		$this->sl147_display_section( __( 'On phone', 'simple-top-bar' ) );
+		$this->sl147_display_section( __( 'Screen width < 576px', 'simple-top-bar' ) );
 	}
 	
 	/**

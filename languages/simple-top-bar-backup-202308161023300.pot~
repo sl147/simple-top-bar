@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-16 10:23+0000\n"
+"POT-Creation-Date: 2023-08-16 09:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -87,16 +87,24 @@ msgstr ""
 msgid "Movable"
 msgstr ""
 
+#: settings/sl147_class_settings.php:195
+msgid "On laptop"
+msgstr ""
+
+#: settings/sl147_class_settings.php:204
+msgid "On phone"
+msgstr ""
+
 #: settings/sl147_class_settings.php:186
 #: admin/partials/class-sl147_TB_admin.php:87
 msgid "Position"
 msgstr ""
 
-#: settings/sl147_class_settings.php:204 settings/sl147_class_settings.php:391
+#: settings/sl147_class_settings.php:391
 msgid "Screen width < 576px"
 msgstr ""
 
-#: settings/sl147_class_settings.php:195 settings/sl147_class_settings.php:390
+#: settings/sl147_class_settings.php:390
 msgid "Screen width > 576px"
 msgstr ""
 
