@@ -56,24 +56,12 @@ class Sl147_TB_admin extends Sl147_TB_main {
                     'type_option'  => 'checkbox',
                 ),
 
-            'block width' => 
-                array (
-                    'id_option'    => $this->tb_block_width,
-                    'label_option' => __('Bar width (%%)', 'simple-top-bar'),
-                    'type_option'  => 'number',
-                    'validate'     => array(
-                        'required' => true,
-                        'check_min'   => 50,
-                        'check_max'   => 100
-                ),
-            ),
 			'border radius' => 
                 array (
                     'id_option'    => $this->tb_border_radius,
                     'label_option' => __('Border radius (px)', 'simple-top-bar'),
                     'type_option'  => 'number',
                     'validate'     => array(
-                        'required' => true,
                         'check_min'   => 0,
                         'check_max'   => 50
                 ),
@@ -98,6 +86,17 @@ class Sl147_TB_admin extends Sl147_TB_main {
 		];
 
         $value_options_laptop = [
+            'block_width_laptop' => 
+                array (
+                    'id_option'    => $this->tb_block_width_laptop,
+                    'label_option' => __('Bar width (%%)', 'simple-top-bar'),
+                    'type_option'  => 'number',
+                    'validate'     => array(
+                        'required' => true,
+                        'check_min'   => 50,
+                        'check_max'   => 100
+                ),
+            ),
             'font_size' => 
                 array (
                     'id_option'    => $this->tb_font_size_laptop,
@@ -123,6 +122,17 @@ class Sl147_TB_admin extends Sl147_TB_main {
         ];
 
         $value_options_tel = [
+            'block width tel' => 
+                array (
+                    'id_option'    => $this->tb_block_width_tel,
+                    'label_option' => __('Bar width (%%)', 'simple-top-bar'),
+                    'type_option'  => 'number',
+                    'validate'     => array(
+                        'required' => true,
+                        'check_min'   => 50,
+                        'check_max'   => 100
+                ),
+            ),
             'font_size_tel' => 
                 array (
                     'id_option'    => $this->tb_font_size_tel,

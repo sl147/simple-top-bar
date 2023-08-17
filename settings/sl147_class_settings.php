@@ -420,6 +420,14 @@ class Sl147_class_TB_settings {
 	}
 
     /**
+     * delete cookies
+     * 
+     */ 
+    public function sl147_delete_cookies() {
+    	setcookie("sl147_tb","",time()-3600,"/");
+    }
+    
+    /**
      * display notice
      * @return void
      * 
@@ -439,6 +447,8 @@ class Sl147_class_TB_settings {
 				</div>
 			<?php
 		}
+
+		add_action( 'admin_footer',  array( $this, 'sl147_delete_cookies'), 99 );
 	}
 
     /**

@@ -40,7 +40,7 @@ class Sl147_TB extends Sl147_TB_main{
                             align-items: center;
                             justify-content: center;                           
                             z-index:99999;
-                            width:' . $val[$this->tb_block_width] . '%;
+                            width:' . $val_laptop[$this->tb_block_width_laptop] . '%;
 							border-radius:' . $val[$this->tb_border_radius] . 'px;
                             position:' . $val[$this->tb_position] . ';';
                 if ($val[$this->tb_updown] == 'up') {
@@ -55,6 +55,7 @@ class Sl147_TB extends Sl147_TB_main{
                             .sl147_tb_notice {
                                 font-size:'.$val_tel[$this->tb_font_size_tel].'px;
                                 height:'.$val_tel[$this->tb_block_height_tel].'px;
+                                width:' . $val_tel[$this->tb_block_width_tel] . '%;
                                 padding-left: 10px;
                                 padding-right: 10px;';
 				if ($val[$this->tb_updown] == 'up') {
@@ -79,19 +80,13 @@ class Sl147_TB extends Sl147_TB_main{
                     ';
             $button .= '
                 <script>
-                    function setPopUpCookie() {
-                        Cookies.set("sl147_tb", "sl147_tb")
+                    function sl147_setCookie() {
+                        document.cookie = "sl147_tb=1; path=/;"
                         return true;
-                    }
-                    function getCookie(name) {
-                        let matches = document.cookie.match(new RegExp(
-                        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"
-                        ));
-                        return matches ? decodeURIComponent(matches[1]) : undefined;
                     }
                     jQuery(".sl147_notice_dismiss").click(function() {
                         jQuery(".sl147_tb_notice").remove();
-                        setPopUpCookie();
+                        sl147_setCookie();
                         })
                 </script>
                 ';
@@ -100,7 +95,7 @@ class Sl147_TB extends Sl147_TB_main{
         
         ?>
         <?php
-echo $button;
+        echo $button;
         return $button;
     }
 
@@ -114,6 +109,8 @@ echo $button;
      */
 
     public function run(){
-        add_action("wp_head", array ($this, "sl147_TB_output_shortcode"));    
+        add_action("wp_head", array ($this, "sl147_TB_output_shortcode")); 
+
+           
     }
 }

@@ -21,7 +21,8 @@ class Sl147_TB_main {
 	public $tb_active_non_stop     = 'sl147_TB_active_ns';
 	public $tb_position            = 'sl147_TB_position';
 	public $tb_updown              = 'sl147_TB_updown';
-	public $tb_block_width         = 'sl147_TB_block_width';
+	public $tb_block_width_tel     = 'sl147_TB_block_width_tel';
+	public $tb_block_width_laptop  = 'sl147_TB_block_width_laptop';
 	public $tb_border_radius       = 'sl147_TB_border_radius';
 
 }
