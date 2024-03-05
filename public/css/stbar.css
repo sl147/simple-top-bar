@@ -1,0 +1,34 @@
+.stbar_span {
+    text-align:center;
+    width: 1380px;
+}
+@media screen and (max-width: 576px) {
+    .stbar_notice_dismiss {
+        margin-right: 0px!important;
+    }
+    .stbar_notice {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.stbar_notice_dismiss {
+    margin-right: 20px;
+}
+.stbar_text_option{
+    width: 500px
+}
+.stbar_notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stbar_notice_dismiss:before {
+    background: 0 0;
+    display: block;
+    font: normal 16px/20px dashicons;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
