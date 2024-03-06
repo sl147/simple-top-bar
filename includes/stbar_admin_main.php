@@ -7,8 +7,8 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
     class STBAR_ADMIN_MAIN {
 
         public function stbar_admin_style(){
-            wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), '1.0.0');
-            wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), '1.0.0', true );
+            wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), '1.0.1');
+            wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), '1.0.1', true );
         }
 
         public function stbar_admin_run(){

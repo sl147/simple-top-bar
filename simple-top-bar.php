@@ -4,7 +4,7 @@
  * Plugin Name:       Simple top bar
  * Plugin URI:        https://www.gomgal.lviv.ua/topBar
  * Description:       <code><strong>Simple top bar</strong></code>Customizer for top bar
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires PHP:      7.4
  * Requires at least: 3.8
  * Author:            Yaroslav Livchak
@@ -28,7 +28,7 @@ if ( ! defined( 'STBAR_PLUGIN_DIR_PATH' ) ) {
  */
 function stbar_textdomain() {
     $locale = determine_locale();
-    load_plugin_textdomain( 'simple-top-bar', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
+    load_plugin_textdomain( 'simple-top-bar', false,  basename( plugin_basename(__FILE__) ) . '/languages/' );
 }
 add_action('plugins_loaded', 'stbar_textdomain');
 
