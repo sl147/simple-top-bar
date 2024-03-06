@@ -53,8 +53,8 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
         }
 
         public function stbar_style(){
-            wp_enqueue_style( 'stbar_css', plugins_url( 'public/css/stbar.css', dirname(__FILE__) ) , array(), '1.0.1');
-            wp_enqueue_script( 'stbar_js', plugins_url( 'public/js/stbar.js', dirname(__FILE__) ), array(), '1.0.1', true );
+            wp_enqueue_style( 'stbar_css', plugins_url( 'public/css/stbar.css', dirname(__FILE__) ) , array(), STBAR_PLUGIN_VERSION);
+            wp_enqueue_script( 'stbar_js', plugins_url( 'public/js/stbar.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
         }
 
         public function stbar_run(){
