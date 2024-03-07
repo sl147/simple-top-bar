@@ -150,7 +150,26 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 
 			return (string) ($class) ? " class='" . $class . "'" : "";
 		}
-		
+
+		public function stbar_input_radio($val, $index){
+			foreach ($this->stbar_value_options as $key => $option) {				
+				if ($index == $option['id_option']) {
+					$vals = $option['radio_options'];
+				}
+			}
+			
+			$vals = ($vals) ? $vals : [];
+			$tmp = "<div style='display:flex; align-items: center;margin-bottom: 10px;'>";
+			foreach ($vals as $value) {
+				$selected = ($val[$index] == $value['id_radio']) ? "checked " : ''; 
+
+				$tmp .= "<input type='radio' id='".esc_attr($value['id_radio']) . "' name='" . esc_attr($this->stbar_option_name) . "[$index]' value='" . esc_attr($value['id_radio'])."' ".$selected;
+				$tmp .=$this->stbar_get_required( $index ) . " />";
+				$tmp .= "<label style='margin-right:20px;padding-bottom: 6px;' for=".$value['id_radio'].">".$value['name_radio']."</label>";
+				
+			}
+			return $tmp."</div>";
+		}		
 	     /**
 	     * input for type TENCDRT (Text Email Number Checkbox Date Range Tel)
 	     * @param $val array value
@@ -163,22 +182,31 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 			$index = esc_attr( $field['name_field'] );
 			$type  = esc_attr( $field['type_field'] );
 
-			$txt_out = '<input type="' . $type . '" id="' . $index . '" name="' . $this->stbar_option_name . '[' . $index . ']" ';
-			if ( 'checkbox' == $type ) {
-				$txt_out .= 'value="1" ';
-				if ( 1 == intval($val[$index] )) $txt_out .='checked="checked"';
-			}else {
-				$txt_out .= 'value="'. esc_attr($val[$index]) . '"';	
+			if( 'radio' == $type) {
+				$txt_out = $this->stbar_input_radio($val, $index);
+			}else{
+				$txt_out = '<input type="' . $type . '" id="' . $index . '" name="' . $this->stbar_option_name . '[' . $index . ']" ';
+				if ( 'checkbox' == $type ) {
+					$txt_out .= 'value="1" ';
+					if ( 1 == intval($val[$index] )) $txt_out .='checked="checked"';
+				}else {
+					$txt_out .= 'value="'. esc_attr($val[$index]) . '"';	
+				}
+				if (   ( 'number' ==  $type ) 
+					|| ( 'date'   ==  $type )
+					|| ( 'range'  ==  $type )
+					|| ( 'tel'    ==  $type ) ) $txt_out .= $this->stbar_get_min_max( $index );
+
+				$txt_out .=$this->stbar_get_required( $index );
 			}
 
-			if (   ( 'number' ==  $type ) 
-				|| ( 'date'   ==  $type )
-				|| ( 'range'  ==  $type )
-				|| ( 'tel'    ==  $type ) ) $txt_out .= $this->stbar_get_min_max( $index );
-
-			$txt_out .=$this->stbar_get_required( $index );
+			
 			$txt_out .=$this->stbar_get_class( $index );
 
+			if( 'radio' == $type) {
+				return (string) $txt_out;	
+			}
+			
 			return (string) $txt_out . " />";
 
 		}

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Simple top bar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-05 18:23+0000\n"
-"PO-Revision-Date: 2024-03-06 16:35+0000\n"
+"PO-Revision-Date: 2024-03-05 18:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -26,7 +26,7 @@ msgstr "Включити верхню панель"
 
 #: includes/stbar_admin_main.php:91
 msgid "Active top bar non stop"
-msgstr "Активна верхня панель постійно"
+msgstr "Активна верхня смуга без зупинки"
 
 #: includes/stbar_admin_main.php:21
 msgid "Background color"
@@ -46,7 +46,7 @@ msgstr "Колір шрифту"
 
 #: includes/stbar_admin_main.php:67
 msgid "Font size < 576px (px)"
-msgstr "Розмір шрифту < 576 px (px)"
+msgstr "Розмір шрифту < 576px (px)"
 
 #: includes/stbar_admin_main.php:57
 msgid "Font size > 576px (px)"

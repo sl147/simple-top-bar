@@ -15,6 +15,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
             if( ( 'stbar_text_option' == sanitize_text_field( $_COOKIE["stbar_cookies"] ) ) && ( ! intval( $val['stbar_active_non_stop'])) ) return;
 
             $set_shortcode = '
+                <div class="stbar_block">
                 <div class="stbar_notice">
                 <span class="stbar_span">'.
                     sanitize_text_field( $val['stbar_text_option'] ) .
@@ -27,7 +28,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                     style="background-color:' . sanitize_text_field($val['stbar_background_color']) . '!important; border: 0!important;">
                     <span style="cursor: pointer; color:' . sanitize_text_field($val['stbar_font_color']) .';" class="dashicons dashicons-dismiss"></span>
                 </button>
-                </div>';
+                </div></div>';
                 
             $set_shortcode .= '
                 <style>
@@ -36,7 +37,15 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                         font-size:' . intval($val['stbar_font_size']) . 'px;
                         background-color:' . sanitize_text_field($val['stbar_background_color']) .';
                         height:' . intval($val['stbar_block_height']) . 'px;
-                    }
+                        z-index:99999;
+                        position:' . $val['stbar_position'] . ';';
+            if ( 'up' == sanitize_text_field( $val['stbar_updown'] ) ) {
+                $set_shortcode .= 'top:0;';
+                if( is_admin_bar_showing() ) $set_shortcode .= 'margin-top:32px;';
+            }else{
+                $set_shortcode .= 'bottom:0;';
+            }
+            $set_shortcode .= '}
                     @media screen and (max-width: 576px) {
                         .stbar_notice {
                             font-size:' . intval($val['stbar_font_size_tel']) . 'px;
