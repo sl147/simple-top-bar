@@ -84,20 +84,20 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     'label_option' => esc_html__('Active top bar non stop', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
-                'position' => array (
-                    'id_option'    => 'stbar_position',
-                    'label_option' => esc_html__('Position', 'simple-top-bar'),
+                'updown' => array (
+                    'id_option'    => 'stbar_updown',
+                    'label_option' => esc_html__('Placement', 'simple-top-bar'),
                     'type_option'  => 'radio',
-                    'radio_options'=> $this->sl147_get_position(),
+                    'radio_options'=> $this->sl147_get_updown(),
                     'validate'     => array(
                         'required' => true,
                     ),
                 ),
-                'updown' => array (
-                    'id_option'    => 'stbar_updown',
-                    'label_option' => esc_html__('Up Down', 'simple-top-bar'),
+                'position' => array (
+                    'id_option'    => 'stbar_position',
+                    'label_option' => esc_html__('Positioned', 'simple-top-bar'),
                     'type_option'  => 'radio',
-                    'radio_options'=> $this->sl147_get_updown(),
+                    'radio_options'=> $this->sl147_get_position(),
                     'validate'     => array(
                         'required' => true,
                     ),
@@ -109,12 +109,13 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 ),
             );
         }
-        public function stbar_admin_style(){
+
+        public function stbar_admin_style() :void{
             wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION);
             wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
         }
 
-        public function stbar_admin_run(){
+        public function stbar_admin_run() :void{
 
             add_action( 'admin_enqueue_scripts',  array($this, 'stbar_admin_style') );
 
@@ -124,39 +125,39 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             $stbar_options = new STBAR_option_settings( $value_options );             
         }
 
-        private function sl147_form_radio($val){
+        private function sl147_form_radio( array $val) :array{
             $tmp = array();
             foreach ($val as $value) {
-                $item = array(
-                'id_radio'   => $value['id'],
-                'name_radio' => $value['name']
+                array_push($tmp, array(
+                    'id_radio'   => $value['id'],
+                    'name_radio' => $value['name']
+                    )
                 );
-                array_push($tmp, $item);
             }
-            return $tmp;
+            return (array) $tmp;
         }
 
-        private function set_radio($id, $name) {
-            return array(
+        private function set_radio( string $id, string $name) {
+            return (array) array(
                 'id'   => $id,
                 'name' => $name
             );
         }
 
-        private function sl147_get_position(){
+        private function sl147_get_position() :array {
             $val = array(
-                'standard' => $this->set_radio('absolute', esc_html__('Movable', 'simple-top-bar')),
-                'fixed'    => $this->set_radio('fixed',    esc_html__('Fixed',    'simple-top-bar'))
+                'standard' => $this->set_radio( esc_html__('absolute'), esc_html__('Movable', 'simple-top-bar')),
+                'fixed'    => $this->set_radio( esc_html__('fixed'),    esc_html__('Fixed',   'simple-top-bar'))
             );
-            return $this->sl147_form_radio($val);
+            return (array) $this->sl147_form_radio($val);
         }
         
-        private function sl147_get_updown(){
+        private function sl147_get_updown() :array{
             $val = array(
-                'up'   => $this->set_radio('up',   esc_html__('Up',   'simple-top-bar')),
-                'down' => $this->set_radio('down', esc_html__('Down', 'simple-top-bar')),
+                'up'   => $this->set_radio( esc_html__('up'),   esc_html__('Up',   'simple-top-bar')),
+                'down' => $this->set_radio( esc_html__('down'), esc_html__('Down', 'simple-top-bar'))
             );
-            return $this->sl147_form_radio($val);
+            return (array) $this->sl147_form_radio($val);
         }
     }
 }

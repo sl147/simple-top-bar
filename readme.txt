@@ -1,10 +1,10 @@
 === Simple top bar ===
 Contributors: sl147
 Tags: topbar
-Requires PHP: 7.4
+Requires PHP: 7.2
 Requires at least: 3.8
 Tested up to: 6.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,11 @@ Don't waste time, install Simple Top Bar today and make your site more attractiv
 To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
+
+=  1.1.1 (2024-03-08) =
+* `[Changed]` change label for option: Position -> Positioned
+* `[Changed]` change label for option: Up down -> Placement
+* `[Changed]` plugin performance improvements
 
 =  1.1.0 (2024-03-07) =
 * `[Added]` option: position

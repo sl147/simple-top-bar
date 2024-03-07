@@ -38,7 +38,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                         background-color:' . sanitize_text_field($val['stbar_background_color']) .';
                         height:' . intval($val['stbar_block_height']) . 'px;
                         z-index:99999;
-                        position:' . $val['stbar_position'] . ';';
+                        position:' . sanitize_text_field($val['stbar_position']) . ';';
             if ( 'up' == sanitize_text_field( $val['stbar_updown'] ) ) {
                 $set_shortcode .= 'top:0;';
                 if( is_admin_bar_showing() ) $set_shortcode .= 'margin-top:32px;';
