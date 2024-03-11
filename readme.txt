@@ -20,6 +20,9 @@ To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
 
+=  1.1.3 (2024-03-11) =
+* `[Fixed]` fixed some bugs in the plugin's code
+
 =  1.1.2 (2024-03-11) =
 * `[Fixed]` fixed some bugs in the plugin's code
 

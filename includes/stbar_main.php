@@ -68,9 +68,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
 
         public function stbar_run(){
             add_action( 'wp_enqueue_scripts',  array($this, 'stbar_style') );
-
             add_shortcode('stbar_output', array($this, 'stbar_set_shortcode'));
-
             add_action("wp_head", array ($this, "stbar_output_shortcode") );
         }
    
