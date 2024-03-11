@@ -4,7 +4,7 @@
  * Plugin Name:       Simple top bar
  * Plugin URI:        https://www.gomgal.lviv.ua/topBar
  * Description:       <code><strong>Simple top bar</strong></code>Customizer for top bar
- * Version:           1.1.3
+ * Version:           1.1.4
  * Requires PHP:      7.2
  * Requires at least: 3.8
  * Author:            Yaroslav Livchak
