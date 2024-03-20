@@ -4,7 +4,7 @@ Tags: topbar
 Requires PHP: 7.2
 Requires at least: 3.8
 Tested up to: 6.4
-Stable tag: 1.1.4
+Stable tag: 1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,12 @@ Don't waste time, install Simple Top Bar today and make your site more attractiv
 To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
+
+=  1.2.1 (2024-03-20) =
+* `[Changed]` new plugin structure
+* `[Added]` Tabs: general, for screen > 576px, for screen < 576px
+* `[Added]` Height bar, font size, bar width for different devices
+* `[Added]` option: border radius
 
 =  1.1.4 (2024-03-11) =
 * `[Fixed]` fixed some bugs in the plugin's code
