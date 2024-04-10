@@ -18,7 +18,15 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
 
             $set_shortcode = '
                 <div class="stbar_block">
-                <div class="stbar_notice">
+                <div class="stbar_notice';
+
+            if( intval($val_general['stbar_animation'])) {
+                $set_shortcode .= ( 'up' == sanitize_text_field( $val_general['stbar_updown'] ) )
+                                     ? ' stbar_top_animation'
+                                     : ' stbar_bottom_animation';
+            }
+
+            $set_shortcode .= '">
                 <span class="stbar_span">'.
                     sanitize_text_field( $val_general['stbar_text_option'] ) .
                 '</span>';
@@ -42,7 +50,8 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                         z-index:99999;
                         width:' . intval($val_laptop['stbar_block_width_laptop']) . '%;
                         border-radius:' . intval($val_general['stbar_border_radius']) . 'px;
-                        position:' . sanitize_text_field($val_general['stbar_position']) . ';';
+                        position:' . sanitize_text_field($val_general['stbar_position']) . ';
+                        ';
             if ( 'up' == sanitize_text_field( $val_general['stbar_updown'] ) ) {
                 $set_shortcode .= 'top:0;';
                 if( is_admin_bar_showing() ) $set_shortcode .= 'margin-top:32px;';

@@ -43,14 +43,19 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                         'check_max'   => 50
                     ),
                 ),
+                'animation_TB' => array (
+                    'id_option'    => 'stbar_animation',
+                    'label_option' => esc_html__('Animation bar', 'simple-top-bar'),
+                    'type_option'  => 'checkbox',
+                ),
                 'active_TB' => array (
                     'id_option'    => 'stbar_active',
-                    'label_option' => esc_html__('Active top bar', 'simple-top-bar'),
+                    'label_option' => esc_html__('Active bar', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
                 'active_TB_ns' => array (
                     'id_option'    => 'stbar_active_non_stop',
-                    'label_option' => esc_html__('Active top bar non stop', 'simple-top-bar'),
+                    'label_option' => esc_html__('Active bar non stop', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
                 'delete_option' => array (
