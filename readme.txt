@@ -4,7 +4,7 @@ Tags: topbar
 Requires PHP: 7.2
 Requires at least: 3.8
 Tested up to: 6.5
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,9 @@ Don't waste time, install Simple Top Bar today and make your site more attractiv
 To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
+
+=  1.2.3 (2024-04-12) =
+* `[Changed]` change labels for options
 
 =  1.2.2 (2024-04-10) =
 * `[Added]` option: animation

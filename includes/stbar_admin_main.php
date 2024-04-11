@@ -6,12 +6,12 @@
 if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
     class STBAR_ADMIN_MAIN {
 
-        private function stbar_set_option() {
+        private function stbar_set_option() :array {
 
             $value_options = array(
                 'background_color' => array (
                     'id_option'    => 'stbar_background_color',
-                    'label_option' => esc_html__('Background color','simple-top-bar'),
+                    'label_option' => esc_html__('Bar background color','simple-top-bar'),
                     'type_option'  => 'text',
                     'validate'     => array(
                         'check_color' => true
@@ -19,7 +19,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 ),
                 'font_color' => array (
                     'id_option'    => 'stbar_font_color',
-                    'label_option' => esc_html__('Font color', 'simple-top-bar'),
+                    'label_option' => esc_html__('Bar font color', 'simple-top-bar'),
                     'type_option'  => 'text',
                     'validate'     => array(
                         'check_color' => true
@@ -27,7 +27,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 ),
                 'text_TB' => array (
                     'id_option'    => 'stbar_text_option',
-                    'label_option' => esc_html__('Text in top bar', 'simple-top-bar'),
+                    'label_option' => esc_html__('Text in bar', 'simple-top-bar'),
                     'type_option'  => 'text',
                     'validate'     => array(
                         'required' => true,
@@ -45,17 +45,17 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 ),
                 'animation_TB' => array (
                     'id_option'    => 'stbar_animation',
-                    'label_option' => esc_html__('Animation bar', 'simple-top-bar'),
+                    'label_option' => esc_html__('Enable bar animation', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
                 'active_TB' => array (
                     'id_option'    => 'stbar_active',
-                    'label_option' => esc_html__('Active bar', 'simple-top-bar'),
+                    'label_option' => esc_html__('Enable bar', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
                 'active_TB_ns' => array (
-                    'id_option'    => 'stbar_active_non_stop',
-                    'label_option' => esc_html__('Active bar non stop', 'simple-top-bar'),
+                    'id_option'    => 'stbar_active_permanently',
+                    'label_option' => esc_html__('Enable bar permanently', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                 ),
                 'delete_option' => array (
@@ -67,7 +67,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
 
             $value_options_position = array(
                 'updown' => array (
-                    'id_option'    => 'stbar_updown',
+                    'id_option'    => 'stbar_placement',
                     'label_option' => esc_html__('Placement', 'simple-top-bar'),
                     'type_option'  => 'radio',
                     'radio_options'=> $this->stbar_get_updown(),
@@ -89,7 +89,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             $value_options_laptop = array(
                 'TB_height' => array (
                     'id_option'    => 'stbar_block_height',
-                    'label_option' => esc_html__('Height top bar > 576px (px)', 'simple-top-bar'),
+                    'label_option' => esc_html__('Bar height (px)', 'simple-top-bar'),
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required'  => true,
@@ -100,7 +100,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 
                 'font_size' => array (
                     'id_option'    => 'stbar_font_size',
-                    'label_option' => esc_html__('Font size > 576px (px)', 'simple-top-bar'),
+                    'label_option' => esc_html__('Bar font size (px)', 'simple-top-bar'),
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required'  => true,
@@ -123,7 +123,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             $value_options_tel = array(
                 'TB_height_tel' => array (
                     'id_option'    => 'stbar_block_height_tel',
-                    'label_option' => esc_html__('Height top bar < 576px (px)', 'simple-top-bar'),
+                    'label_option' => esc_html__('Bar height (px)', 'simple-top-bar'),
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required'  => true,
@@ -133,7 +133,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                 ),
                 'font_size_tel' => array (
                     'id_option'    => 'stbar_font_size_tel',
-                    'label_option' => esc_html__('Font size < 576px (px)','simple-top-bar'),
+                    'label_option' => esc_html__('Bar font size (px)','simple-top-bar'),
                     'type_option'  => 'number',
                     'validate'     => array(
                         'required'  => true,
@@ -161,7 +161,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     'value_options_tel'      => $value_options_tel,
                     )
                 );
-            return $tmp;
+            return (array) $tmp;
         }
 
         public function stbar_admin_style() :void{
