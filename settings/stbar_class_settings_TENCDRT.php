@@ -1,65 +1,85 @@
 <?php
 
 /**
- * class for input type text, number, date, range
+ * class for input type text, number
  */
+
 class Stbar_class_settings_TENCDRT {
 
+	function __construct (array $value_options) {
+		$this->value_options = $value_options;
+	}
+
     /**
-     * get min max value for type number, date
-     * @param $min_max string : min or max
-     * @param $value_options array value options
-     * @return int for number string for date
+     * get attribute value for input
+     * @param $attr string name attribute
+     * @return string attribute value
      * 
      */ 
-	private function stbar_get_attribute (string $min_max, string $type, array $value_options) {
-		foreach ( $value_options as $key => $option ) {
-			if ( sanitize_key($option['id_option']) == $type) {
-				foreach ($option as $key1 => $value) {					
+	private function stbar_get_attribute (string $attr, string $id_option) :string{
+		foreach ( $this->value_options as $option ) {
+			if ( sanitize_key($option['id_option']) == $id_option) {
+				foreach ($option as $key1 => $value1) {					
 					if ( 'validate' == $key1 ){
-						foreach ($value as $key2 => $var) {
-							if ($key2 == $min_max) return sanitize_text_field($var);
+						foreach ($value1 as $key2 => $value2) {
+							if ($key2 == $attr) return (string) sanitize_text_field($value2);
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return (string) "";
 	}
 
     /**
-     * get atribute min max value
+     * get helper value
+     * @param $id_option string id_option option
+     * @return string helper text
+     * 
+     */ 
+	private function stbar_get_helper( string $id_option) :string {
+		foreach ( $this->value_options as $option ) {
+			if ( sanitize_key($option['id_option']) == $id_option) {
+				foreach ($option as $key => $value) {
+					if ( 'helper' == $key ) {
+						return (string) sanitize_text_field($value);
+					}
+				}
+			}
+		}
+		return (string) "";
+	}
+
+    /**
+     * get value atribute min max 
      * @param $type string  type for input
-     * @param $value_options array value options
      * @return value atribute min max
      */ 
-	private function stbar_get_min_max( string $type, array $value_options) :string{
-		$min = intval($this->stbar_get_attribute('check_min', $type, $value_options));
-		$max = intval($this->stbar_get_attribute('check_max', $type, $value_options));
+	private function stbar_get_min_max( string $type) :string{
+		$min = intval($this->stbar_get_attribute('check_min', $type));
+		$max = intval($this->stbar_get_attribute('check_max', $type));
 
 		$input  = (($min) || ($min === 0) ) ? " min=" . $min : "";
 		$input .= (($max) || ($max === 0) ) ? " max=" . $max : "";
-		return $input;
+		return (string) $input;
 	}
 
     /**
-     * get atribute pattern
+     * get required atribute
      * @param $type for input
-     * @param $value_options array value options
-     * @return value atribute pattern
+     * @return string required value for atribute
      */ 
-	private function stbar_get_required( string $type, array $value_options) :string{
-		return (string) ($this->stbar_get_attribute('required', $type, $value_options)) ? " required " : ""; 
+	private function stbar_get_required( string $type) :string{
+		return (string) ($this->stbar_get_attribute('required', $type)) ? " required " : ""; 
 	}
 
     /**
      * get atribute class
      * @param $type for input
-     * @param $value_options array value options
-     * @return value atribute class
+     * @return string value atribute class
      */ 
-	private function stbar_get_class( string $type, array $value_options) :string{
-		$class = sanitize_html_class($this->stbar_get_attribute('class', $type, $value_options));
+	private function stbar_get_class( string $type) :string{
+		$class = sanitize_html_class($this->stbar_get_attribute('class', $type));
 		return (string) ($class) ? " class='" . $class . "'" : "";
 	}
 	
@@ -68,25 +88,29 @@ class Stbar_class_settings_TENCDRT {
      * @param $val array options
      * @param $index string name option, id for input
      * @param $type string input type
-     * @param $value_options array value options
      * @return void
      * 
      */ 
-	public function stbar_input_TENCDRT(array $val, string $index, string $type, string $bd, array $value_options) :string{
+	public function stbar_input_TENCDRT(array $val, string $index, string $type, string $bd) :string{
 		$tmp =  "<input type='$type' id='$index' name='".$bd."[$index]' ";
 		if ( 'checkbox' == $type ) {
-			$tmp .= "value='1' ".checked( 1, $val[$index], false );	
+			$tmp .= "value='1' ".checked( 1, $val[$index], false );
+			$tag  = "span";
+			$padding  = "20px";
 		}else {
-			$tmp .=  "value='". $val[$index]."' ";	
+			$tmp .= "value='". $val[$index]."' ";
+			$tag  = "div";
+			$padding  = "0";	
 		}
 
 		if (   ( 'number' == $type ) 
 			|| ( 'date'   == $type )
-			|| ( 'range'  == $type ) ) $tmp .= $this->stbar_get_min_max( $index, $value_options );
+			|| ( 'range'  == $type ) ) $tmp .= $this->stbar_get_min_max( $index );
 
-		$tmp .= $this->stbar_get_required($index, $value_options);
-		$tmp .= $this->stbar_get_class($index, $value_options);
+		$tmp .= $this->stbar_get_required($index);
+		$tmp .= $this->stbar_get_class($index);
 
-		return $tmp . " />";
+		$tmp .= " /><" . $tag . " style='font-size:12px;padding-left:" .$padding . "'>" . $this->stbar_get_helper($index) . "</" . $tag . ">";
+		return (string) $tmp;
 	}
 }

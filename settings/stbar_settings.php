@@ -82,7 +82,7 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 	     * @return void
 	     */ 
 		public function stbar_display_section_position() :void{
-			$this->stbar_display_section( esc_html__( 'Position', 'simple-top-bar' ) );
+			$this->stbar_display_section( esc_html__( 'Bar position', 'simple-top-bar' ) );
 		}
 
 	    /**
@@ -187,17 +187,16 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 		private function get_data(array $field, string $settings_bd, array $value_options) {
 			$index = esc_attr( $field['name_field'] );
 			$type  = esc_attr( $field['type_field'] );
-
-			$val = get_option($settings_bd);
-			$val  = ($val) ? $val : [];
+			$val   = get_option($settings_bd);
+			$val   = ($val) ? $val : [];
 			if( 'radio' == $type ) {
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_radio.php';
-				$tmp = new Stbar_class_settings_radio();
-				echo $tmp->stbar_input_radio($val, $index, esc_attr($settings_bd), $value_options);
+				$tmp = new Stbar_class_settings_radio( $value_options );
+				echo $tmp->stbar_input_radio( $val, $index, esc_attr( $settings_bd ) );
 			}else{
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_TENCDRT.php';
-				$tmp = new Stbar_class_settings_TENCDRT();
-				echo $tmp->stbar_input_TENCDRT($val, $index, $type, esc_attr($settings_bd), $value_options);
+				$tmp = new Stbar_class_settings_TENCDRT( $value_options );
+				echo $tmp->stbar_input_TENCDRT($val, $index, $type, esc_attr($settings_bd));
 			}
 		}
 
