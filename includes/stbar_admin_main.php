@@ -7,7 +7,13 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
     class STBAR_ADMIN_MAIN {
 
         private function stbar_set_option() :array {
-
+            $this->stbar_page_slug_laptop    = 'stbar_page_slug_laptop';
+            $this->stbar_page_slug_tel       = 'stbar_page_slug_tel';
+            $this->stbar_page_slug_pro       = 'stbar_page_slug_pro';
+            $this->stbar_option_group        = 'stbar_option_group';
+            $this->stbar_option_group_laptop = 'stbar_option_group_laptop';
+            $this->stbar_option_group_tel    = 'stbar_option_group_tel';
+            $this->stbar_option_group_pro    = 'stbar_option_group_pro';
             $value_options = array(
                 'background_color' => array (
                     'id_option'    => 'stbar_background_color',
@@ -46,7 +52,6 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                         'check_max'   => 50
                     ),
                     'helper'       => esc_html__("Defines the radius of a bar's corners. 0(zero) means rectangle", 'simple-top-bar'),
-
                 ),
                 'active_TB' => array (
                     'id_option'    => 'stbar_active',
@@ -75,11 +80,11 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             );
 
             $value_options_position = array(
-                'updown' => array (
+                'placement' => array (
                     'id_option'    => 'stbar_placement',
                     'label_option' => esc_html__('Placement', 'simple-top-bar'),
                     'type_option'  => 'radio',
-                    'radio_options'=> $this->stbar_get_updown(),
+                    'radio_options'=> $this->stbar_get_top_bottom(),
                     'validate'     => array(
                         'required' => true,
                     ),
@@ -163,31 +168,67 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                         'required'  => true,
                         'check_min' => 50,
                         'check_max' => 100
-                ),
+                    ),
                     'helper'       => esc_html__('The bar width in percent. min 50% max 100%', 'simple-top-bar'),
-            ),
+                ),
             );
 
-            $tmp = array();
-            array_push($tmp, array(
-                    'value_options'          => $value_options,
-                    'value_options_position' => $value_options_position,
-                    'value_options_laptop'   => $value_options_laptop,
-                    'value_options_tel'      => $value_options_tel,
-                    )
+            $value_options_pro = array(
+                'opacity' => array (
+                    'id_option'    => 'stbar_opacity',
+                    'label_option' => esc_html__('Transparency (%%)', 'simple-top-bar'),
+                    'type_option'  => 'number',
+                    'validate'     => array(
+                        'check_min'   => 0,
+                        'check_max'   => 100
+                    ),
+                    'helper'       => esc_html__("Determines bar opacity / transparency. min 0(completely transparent), max 100%(opacity) ", 'simple-top-bar'),
+                ),
+            );
+
+            return (array) array(
+                'tab_general' => $this->stbar_set_tab_data( 'stbar_section_id', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options, 'stbar_register_options', esc_html__( 'General', 'simple-top-bar' )),
+
+                'tab_general_position' => $this->stbar_set_tab_data( 'stbar_section_id_position', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options_position, 'stbar_register_options_position', esc_html__( 'Bar position', 'simple-top-bar' )), 
+
+                'tab_laptop' => $this->stbar_set_tab_data( 'stbar_section_id_laptop', $this->stbar_option_group_laptop,'stbar_bd_laptop', $this->stbar_page_slug_laptop, $value_options_laptop, 'stbar_register_options_laptop', esc_html__( 'Screen width > 576px', 'simple-top-bar' )),
+
+                'tab_tel' => $this->stbar_set_tab_data('stbar_section_id_tel',$this->stbar_option_group_tel, 'stbar_bd_tel', $this->stbar_page_slug_tel, $value_options_tel,'stbar_register_options_tel', esc_html__( 'Screen width < 576px', 'simple-top-bar' )),
+ 
+                'tab_pro' => $this->stbar_set_tab_data( 'stbar_section_id_pro', $this->stbar_option_group_pro, 'stbar_bd_pro',$this->stbar_page_slug_pro, $value_options_pro, 'stbar_register_options_pro', esc_html__( 'Pro settings', 'simple-top-bar' ))
+            );
+        }
+
+        private function stbar_set_tab_data( string $id_section, string $group, string $option_in_bd, string $page_slug, array $value_option, string $register_option, string $title_section) :array {
+            
+            return (array) array(
+                    'id_section'     => $id_section,
+                    'group'          => $group,
+                    'bd_pro'         => $option_in_bd,
+                    'page_slug'      => $page_slug,
+                    'value_options'  => $value_option,
+                    'register_option'=> $register_option,
+                    'title_section'  => $title_section
+            );
+        }
+
+        private function stbar_set_tab( string $title, string $group, string $page_slug) :array {
+            return (array) array(
+                    'title'     => $title,
+                    'group'     => $group,
+                    'page_slug' => $page_slug
                 );
-            return (array) $tmp;
         }
+        private function stbar_set_tabs() {
+            return (array) array(
+                'general'   => $this->stbar_set_tab(esc_html__( 'General',   'simple-top-bar' ), $this->stbar_option_group, 'stbar_page_slug'),
 
-        public function stbar_admin_style() :void{
-            wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION);
-            wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
-        }
+                'on_laptop' => $this->stbar_set_tab(esc_html__( 'Screen width > 576px',   'simple-top-bar' ), $this->stbar_option_group_laptop, $this->stbar_page_slug_laptop),
 
-        public function stbar_admin_run() :void{
-            add_action( 'admin_enqueue_scripts',  array($this, 'stbar_admin_style') );
-            require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_settings.php';
-            $tmp = new STBAR_option_settings( $this->stbar_set_option() );
+                'on_phone'  => $this->stbar_set_tab(esc_html__( 'Screen width < 576px',   'simple-top-bar' ), $this->stbar_option_group_tel, $this->stbar_page_slug_tel),
+
+                //'pro'       => $this->stbar_set_tab(esc_html__( 'PRO',   'simple-top-bar' ), $this->stbar_option_group_pro, $this->stbar_page_slug_pro)
+            );
         }
 
         private function stbar_form_radio( array $val) :array{
@@ -218,13 +259,24 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             );
         }
         
-        private function stbar_get_updown() :array {
+        private function stbar_get_top_bottom() :array {
             return (array) $this->stbar_form_radio(
                 array(
-                    'up'   => $this->set_radio( 'up',   esc_html__('Top',   'simple-top-bar')),
-                    'down' => $this->set_radio( 'down', esc_html__('Bottom', 'simple-top-bar'))
+                    'top'    => $this->set_radio( 'top',    esc_html__('Top',    'simple-top-bar')),
+                    'bottom' => $this->set_radio( 'bottom', esc_html__('Bottom', 'simple-top-bar'))
                 )
             );
+        }
+
+        public function stbar_admin_style() :void{
+            wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION);
+            wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
+        }
+
+        public function stbar_admin_run() :void{
+            add_action( 'admin_enqueue_scripts',  array($this, 'stbar_admin_style') );
+            require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_settings.php';
+            $tmp = new STBAR_option_settings( $this->stbar_set_option(), $this->stbar_set_tabs() );
         }
     }
 }

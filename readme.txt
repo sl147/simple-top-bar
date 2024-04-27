@@ -4,7 +4,7 @@ Tags: topbar
 Requires PHP: 7.2
 Requires at least: 3.8
 Tested up to: 6.5
-Stable tag: 1.3.1
+Stable tag: 1.4.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,10 @@ Don't waste time, install Simple Top Bar today and make your site more attractiv
 To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
+
+=  1.4.1 (2024-04-27) =
+* `[Changed]` change design of backend
+* `[Changed]` change of plugin settings page
 
 =  1.3.1 (2024-04-17) =
 * `[Added]` helpers to options
@@ -52,7 +56,7 @@ To use the Simple Top Bar install this plugin and set settings only.
 
 =  1.1.0 (2024-03-07) =
 * `[Added]` option: position
-* `[Added]` option: placement topbar (up or down)
+* `[Added]` option: placement topbar (top or bottom)
 
 =  1.0.2 (2024-03-06) =
 * `[Added]` uploading translation file

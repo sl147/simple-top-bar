@@ -11,17 +11,20 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
             $val_general = get_option('stbar_bd');
             $val_tel     = get_option('stbar_bd_tel');
             $val_laptop  = get_option('stbar_bd_laptop');
+            $val_pro     = get_option('stbar_bd_pro');
 
             if( ! intval($val_general['stbar_active']) ) return;
 
             if( ( 'stbar_text_option' == sanitize_text_field( $_COOKIE["stbar_cookies"] ) ) && ( ! intval( $val_general['stbar_active_permanently'])) ) return;
+
+            update_option('stbar_view', (get_option('stbar_view')) ? get_option('stbar_view') + 1 : 1);
 
             $set_shortcode = '
                 <div class="stbar_block">
                 <div class="stbar_notice';
 
             if( intval($val_general['stbar_animation'])) {
-                $set_shortcode .= ( 'up' == sanitize_text_field( $val_general['stbar_placement'] ) )
+                $set_shortcode .= ( 'top' == sanitize_text_field( $val_general['stbar_placement'] ) )
                                      ? ' stbar_top_animation'
                                      : ' stbar_bottom_animation';
             }
@@ -49,10 +52,11 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                         height:' . intval($val_laptop['stbar_block_height']) . 'px;
                         z-index:99999;
                         width:' . intval($val_laptop['stbar_block_width_laptop']) . '%;
-                        border-radius:' . intval($val_general['stbar_border_radius']) . 'px;
-                        position:' . sanitize_text_field($val_general['stbar_position']) . ';
+                        border-radius:' . intval($val_general['stbar_border_radius']) . 'px;';
+            //$set_shortcode .= 'opacity:' .intval($val_pro['stbar_opacity'])/100 . ';';
+            $set_shortcode .= 'position:' . sanitize_text_field($val_general['stbar_position']) . ';
                         ';
-            if ( 'up' == sanitize_text_field( $val_general['stbar_placement'] ) ) {
+            if ( 'top' == sanitize_text_field( $val_general['stbar_placement'] ) ) {
                 $set_shortcode .= 'top:0;';
                 if( is_admin_bar_showing() ) $set_shortcode .= 'margin-top:32px;';
             }else{
