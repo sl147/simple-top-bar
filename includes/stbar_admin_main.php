@@ -184,10 +184,40 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     ),
                     'helper'       => esc_html__("Determines bar opacity / transparency. min 0(completely transparent), max 100%(opacity) ", 'simple-top-bar'),
                 ),
+                'users' => array (
+                    'id_option'    => 'stbar_users',
+                    'label_option' => esc_html__('User visibility', 'simple-top-bar'),
+                    'type_option'  => 'select',
+                    'select_options'=> $this->stbar_get_users(),
+                    'helper'       => esc_html__("Who can see the bar", 'simple-top-bar'),
+                ),
+                'font_family' => array (
+                    'id_option'    => 'stbar_family',
+                    'label_option' => esc_html__('Font family', 'simple-top-bar'),
+                    'type_option'  => 'select',
+                    'select_options'=> $this->stbar_get_font_family(),
+                    'helper'       => esc_html__("Select font family", 'simple-top-bar'),
+                ),
+                'font_bold' => array (
+                    'id_option'    => 'stbar_bold',
+                    'label_option' => esc_html__('Font bold', 'simple-top-bar'),
+                    'type_option'  => 'select',
+                    'select_options'=> $this->stbar_get_font_bold(),
+                    'helper'       => esc_html__("Font bold. min 100(thin), max 900(bold) ", 'simple-top-bar'),
+                ),
+                'font_style' => array (
+                    'id_option'    => 'stbar_style',
+                    'label_option' => esc_html__('Font style', 'simple-top-bar'),
+                    'type_option'  => 'radio',
+                    'radio_options'=> $this->stbar_get_font_style(),
+                    'validate'     => array(
+                        'required' => true,
+                    ),
+                ),
             );
 
             return (array) array(
-                'tab_general' => $this->stbar_set_tab_data( 'stbar_section_id', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options, 'stbar_register_options', esc_html__( 'General', 'simple-top-bar' )),
+                'tab_general' => $this->stbar_set_tab_data('stbar_section_id', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options, 'stbar_register_options', esc_html__( 'General', 'simple-top-bar' )),
 
                 'tab_general_position' => $this->stbar_set_tab_data( 'stbar_section_id_position', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options_position, 'stbar_register_options_position', esc_html__( 'Bar position', 'simple-top-bar' )), 
 
@@ -195,7 +225,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
 
                 'tab_tel' => $this->stbar_set_tab_data('stbar_section_id_tel',$this->stbar_option_group_tel, 'stbar_bd_tel', $this->stbar_page_slug_tel, $value_options_tel,'stbar_register_options_tel', esc_html__( 'Screen width < 576px', 'simple-top-bar' )),
  
-                'tab_pro' => $this->stbar_set_tab_data( 'stbar_section_id_pro', $this->stbar_option_group_pro, 'stbar_bd_pro',$this->stbar_page_slug_pro, $value_options_pro, 'stbar_register_options_pro', esc_html__( 'Pro settings', 'simple-top-bar' ))
+                //'tab_pro' => $this->stbar_set_tab_data( 'stbar_section_id_pro', $this->stbar_option_group_pro, 'stbar_bd_pro',$this->stbar_page_slug_pro, $value_options_pro, 'stbar_register_options_pro', esc_html__( 'Pro settings', 'simple-top-bar' ))
             );
         }
 
@@ -253,8 +283,8 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
         private function stbar_get_position() :array {
             return (array) $this->stbar_form_radio(
                 array(
-                    'fixed'    => $this->set_radio('fixed',    esc_html__('Fixed',   'simple-top-bar')),
-                    'standard' => $this->set_radio('absolute', esc_html__('Movable', 'simple-top-bar')),
+                    'fixed'    => $this->set_radio('fixed',   esc_html__('Fixed',   'simple-top-bar')),
+                    'standard' => $this->set_radio('absolute',esc_html__('Movable', 'simple-top-bar')),
                 )
             );
         }
@@ -266,6 +296,58 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     'bottom' => $this->set_radio( 'bottom', esc_html__('Bottom', 'simple-top-bar'))
                 )
             );
+        }
+
+        private function stbar_get_font_style() :array {
+            return (array) $this->stbar_form_radio(
+                array(
+                    'normal' => $this->set_radio( 'normal', esc_html__('Normal', 'simple-top-bar')),
+                    'italic' => $this->set_radio( 'italic', esc_html__('Italic', 'simple-top-bar'))
+                )
+            );
+        }
+
+        private function stbar_get_font_family(){
+            $font_families = "Arial,Courier,fantasy,Poppins,Times New Roman,serif,sans-serif,Verdana";
+            $arr_families  = explode(",", $font_families);
+            $add_family    = ',Arial,Courier,Times New Roman';
+            $val = array();
+            for ($i=0; $i < count($arr_families); $i++) { 
+                $item = array(
+                    'id_select'   => $arr_families[$i] . $add_family,
+                    'name_select' => $arr_families[$i]
+                );
+                array_push($val, $item);
+            }
+            return $val;
+        }
+
+        private function stbar_get_font_bold(){
+            $val = array();
+            for ($i=100; $i < 1000 ; $i=($i+100)) { 
+                $item = array(
+                    'id_select'   => $i,
+                    'name_select' => $i
+                );
+                array_push($val, $item);
+            }
+            return (array) $val;
+        }
+
+        private function stbar_user($id, $name){
+            return array(
+                    'id_select'   => $id,
+                    'name_select' => $name
+                );
+        }
+
+        private function stbar_get_users() {
+            $val = array();
+            array_push ($val, $this->stbar_user('All users', 'All users'));
+            array_push ($val, $this->stbar_user('Registered users', 'Registered users'));
+            array_push ($val, $this->stbar_user('Unregistered users', 'Unregistered users'));
+
+            return $val;
         }
 
         public function stbar_admin_style() :void{

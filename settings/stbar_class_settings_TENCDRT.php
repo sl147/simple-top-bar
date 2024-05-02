@@ -92,7 +92,13 @@ class Stbar_class_settings_TENCDRT {
      * 
      */ 
 	public function stbar_input_TENCDRT(array $val, string $index, string $type, string $bd) :string{
-		$tmp =  "<input type='$type' id='$index' name='".$bd."[$index]' ";
+		$tmp = sprintf(
+			"<input type='%s' id='%s' name='%s[%s]' ",
+			$type,
+			$index,
+			$bd,
+			$index
+		);
 		if ( 'checkbox' == $type ) {
 			$tmp .= "value='1' ".checked( 1, $val[$index], false );
 			$tag  = "span";
@@ -110,7 +116,13 @@ class Stbar_class_settings_TENCDRT {
 		$tmp .= $this->stbar_get_required($index);
 		$tmp .= $this->stbar_get_class($index);
 
-		$tmp .= " /><" . $tag . " style='font-size:12px;padding-left:" .$padding . "'>" . $this->stbar_get_helper($index) . "</" . $tag . ">";
+		$tmp .= sprintf(
+			" /><%s style='font-size:12px;padding-left:%s'>%s</%s>",
+			$tag,
+			$padding,
+			$this->stbar_get_helper($index),
+			$tag
+		);
 		return (string) $tmp;
 	}
 }

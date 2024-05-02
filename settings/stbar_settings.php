@@ -8,10 +8,10 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 	     * @param $tabs array plugin's tabs
 	     */	      	
 		function __construct( array $stbar_data, array $tabs) {
+			$this->stbar_data            = $stbar_data;
 			$this->tabs                  = $tabs;			
 			$this->stbar_page_slug       = 'stbar_page_slug';
 			$this->stbar_settings_errors = 'stbar_settings_errors';
-			$this->stbar_data            = $stbar_data;
 
 			add_action( 'admin_init',            array( $this, 'stbar_register_options' ));
 			add_action( 'admin_menu',            array( $this, 'stbar_register_menu') );
@@ -125,6 +125,10 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_radio.php';
 				$tmp = new Stbar_class_settings_radio( $value_options );
 				echo $tmp->stbar_input_radio( $val, $index, esc_attr( $settings_bd ) );
+			}elseif( 'select' == $type){
+				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_select.php';
+				$tmp = new Stbar_class_settings_select( $value_options );
+				echo $tmp->stbar_input_select( $val, $index, esc_attr( $settings_bd ) );
 			}else{
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_TENCDRT.php';
 				$tmp = new Stbar_class_settings_TENCDRT( $value_options );
@@ -170,33 +174,46 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 			<?php
 		}
 
-    /**
-     * display tabs
-     * @return void
-     * 
-     */ 
-	public function stbar_tabs_display() :void{
-		
-		echo "<h2>" . esc_html__( 'Bar settings', 'simple-top-bar' ) . "</h2>";
-	    
-	    $current = ( ! empty( esc_attr( $_GET['tab'] ) ) ) ? esc_attr( $_GET['tab'] ) : 'general';
-	    
-	    $html    = '<h3 class="nav-tab-wrapper">';
+	    /**
+	     * set tabs line
+	     * $curreht string current tab
+	     * @return string
+	     */ 
 
-	    foreach( $this->tabs as $tab => $value ){
-	        $class = ( $tab == $current ) ? 'stbar_active nav-tab-active' : '';
-	        $html .= '<a class=" stbar_tabs nav-tab ' . $class . '" href="?page='.$this->stbar_page_slug.'&tab=' . $tab . '">' . $value['title'] . '</a>';	          
-	    }
-	    echo $html .'</h3>';
+		private function stbar_list_tabs(string $current) :string{
+			$html = "";
+			foreach( $this->tabs as $tab => $value ){
+		        $html .= sprintf(
+		        	"<a class='stbar_tabs nav-tab %s' href='?page=%s&tab=%s'>%s</a>",
+		        	( $tab == $current ) ? 'stbar_active nav-tab-active' : '',
+		        	$this->stbar_page_slug,
+		        	$tab,
+		        	sanitize_text_field($value['title'])
+		        );          
+		    }
+		    return (string) $html;
+		}
 
-	    foreach( $this->tabs as $tab => $value ) {
-	    	if ($tab == $current) {
-	    		$this->display_tab($value['group'], $value['page_slug']);
-	    	}
-	    }
+	    /**
+	     * display tabs
+	     * @return void
+	     */ 
+		public function stbar_tabs_display() :void{
+		    $current = ( ! empty( esc_attr( $_GET['tab'] ) ) ) ? esc_attr( $_GET['tab'] ) : 'general';
+		    
+		    printf(
+		    	"<h2>%s</h2><h3 class='nav-tab-wrapper'>%s</h3",
+		    	esc_html__( 'Bar settings', 'simple-top-bar' ),
+		    	$this->stbar_list_tabs($current)
+		    );
 
-		//printf(	esc_html__('Shown on the site %d ','simple-top-bar' ),	get_option('stbar_view'));
-	}
+		    foreach( $this->tabs as $tab => $value ) {
+		    	if ($tab == $current) {
+		    		$this->display_tab($value['group'], $value['page_slug']);
+		    	}
+		    }
+			printf(	esc_html__('Shown on the site %d ','simple-top-bar' ),	get_option('stbar_view'));
+		}
 
 	    /**
 	     * display notice

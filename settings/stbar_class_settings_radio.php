@@ -36,7 +36,7 @@ class Stbar_class_settings_radio {
      * 
      */ 
 	public function stbar_input_radio( array $val, string $index, string $settings_bd) :string{
-		foreach ($this->value_options as $key => $option) {				
+		foreach ($this->value_options as $option) {				
 			if ($index == $option['id_option']) {
 				$vals = $option['radio_options'];
 			}
@@ -46,14 +46,24 @@ class Stbar_class_settings_radio {
 		$tmp  ="";
 		foreach ($vals as $value) {
 			$value_id = esc_attr($value['id_radio']);
-			$selected = ($val[$index] == $value_id) ? "checked " : '';        
-			$tmp .= "<div class='stbar_input_radio'>";
-			$tmp .= "<input type='radio' id='".$value_id . "' name='" . $settings_bd . "[$index]' value='". $value_id . "' " . $selected . ">";
-			$tmp .= "<label for='$value_id'>" . esc_attr($value['name_radio']) . "</label>";
-
-			$tmp .="</div>";
+			$tmp .= sprintf(
+				"<div class='stbar_input_radio'>
+				<input type='radio' id='%s' name='%s[%s]' value='%s' %s><label for='%s'>%s</label>
+				</div>",
+				$value_id,
+				$settings_bd,
+				$index,
+				$value_id,
+				($val[$index] == $value_id) ? "checked " : '',
+				$value_id,
+				esc_attr($value['name_radio'])
+			);
 		}
 
-		return (string) $tmp . "<span style='margin-left: 30px;font-size:12px'>" . $this->stbar_get_helper($index) . "</span>";
+		return (string) $tmp . 
+						sprintf(
+							"<span class='stbar_select_helper'>%s</span>",
+							$this->stbar_get_helper($index)
+						);
 	}
 }
