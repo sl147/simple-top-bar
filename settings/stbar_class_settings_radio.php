@@ -40,8 +40,7 @@ class Stbar_class_settings_radio {
 			if ($index == $option['id_option']) {
 				$vals = $option['radio_options'];
 			}
-		}
-		
+		}		
 		$vals = ($vals) ? $vals : [];
 		$tmp  ="";
 		foreach ($vals as $value) {
@@ -59,11 +58,10 @@ class Stbar_class_settings_radio {
 				esc_attr($value['name_radio'])
 			);
 		}
-
-		return (string) $tmp . 
-						sprintf(
-							"<span class='stbar_select_helper'>%s</span>",
-							$this->stbar_get_helper($index)
-						);
+		$helper = $this->stbar_get_helper( $index);
+		return (string)( $helper == "") ? $tmp : $tmp . sprintf(
+														"<span class='stbar_select_helper'>%s</span>",
+														$helper
+														);
 	}
 }

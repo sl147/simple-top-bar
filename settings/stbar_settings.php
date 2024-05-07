@@ -7,9 +7,10 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 	     * @param stbar_data  array data in tabs   
 	     * @param $tabs array plugin's tabs
 	     */	      	
-		function __construct( array $stbar_data, array $tabs) {
+		function __construct( array $stbar_data, array $tabs, $lk) {
 			$this->stbar_data            = $stbar_data;
-			$this->tabs                  = $tabs;			
+			$this->tabs                  = $tabs;
+			$this->lk                    = $lk;			
 			$this->stbar_page_slug       = 'stbar_page_slug';
 			$this->stbar_settings_errors = 'stbar_settings_errors';
 
@@ -161,7 +162,7 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 	     */
 		public function display_tab(string $option_group, string $page_slug) :void{
 			?>
-			<div class="wrap">		
+			<div class="">		
 				<form method="post" action="options.php">
 					<?php			
 						settings_errors( $this->stbar_settings_errors );
@@ -183,13 +184,23 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 		private function stbar_list_tabs(string $current) :string{
 			$html = "";
 			foreach( $this->tabs as $tab => $value ){
+				if ( ($tab == 'pro') && !$this->lk) {
+					$html .= sprintf(
+		        	"<a class='stbar_tabs_non stbar_tabs nav-tab %s' href='?page=%s&tab=%s'>%s</a>",
+		        	( $tab == $current ) ? 'stbar_active nav-tab-active' : '',
+		        	$this->stbar_page_slug,
+		        	$tab,
+		        	"PRO version"//sanitize_text_field($value['title'])
+		        );
+				}else {
 		        $html .= sprintf(
 		        	"<a class='stbar_tabs nav-tab %s' href='?page=%s&tab=%s'>%s</a>",
 		        	( $tab == $current ) ? 'stbar_active nav-tab-active' : '',
 		        	$this->stbar_page_slug,
 		        	$tab,
 		        	sanitize_text_field($value['title'])
-		        );          
+		        );
+		        }     
 		    }
 		    return (string) $html;
 		}
@@ -202,16 +213,15 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 		    $current = ( ! empty( esc_attr( $_GET['tab'] ) ) ) ? esc_attr( $_GET['tab'] ) : 'general';
 		    
 		    printf(
-		    	"<h2>%s</h2><h3 class='nav-tab-wrapper'>%s</h3",
+		    	"<h2>%s</h2><h3 class='nav-tab-wrapper'>%s</h3>",
 		    	esc_html__( 'Bar settings', 'simple-top-bar' ),
 		    	$this->stbar_list_tabs($current)
 		    );
 
 		    foreach( $this->tabs as $tab => $value ) {
-		    	if ($tab == $current) {
-		    		$this->display_tab($value['group'], $value['page_slug']);
-		    	}
+		    	if ($tab == $current) $this->display_tab($value['group'], $value['page_slug']);
 		    }
+		    
 			printf(	esc_html__('Shown on the site %d ','simple-top-bar' ),	get_option('stbar_view'));
 		}
 

@@ -17,7 +17,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             $value_options = array(
                 'background_color' => array (
                     'id_option'    => 'stbar_background_color',
-                    'label_option' => esc_html__('Bar background color','simple-top-bar'),
+                    'label_option' => strip_tags(esc_html__('Bar background color','simple-top-bar'), 0),
                     'type_option'  => 'text',
                     'validate'     => array(
                         'check_color' => true
@@ -42,6 +42,24 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                         'class'    => 'stbar_text_option'
                     ),
                     'helper'       => esc_html__('Enter here the text will be displayed in the bar', 'simple-top-bar'),
+                ),
+                'placement' => array (
+                    'id_option'    => 'stbar_placement',
+                    'label_option' => esc_html__('Placement', 'simple-top-bar'),
+                    'type_option'  => 'radio',
+                    'radio_options'=> $this->stbar_get_top_bottom(),
+                    'validate'     => array(
+                        'required' => true,
+                    ),
+                ),
+                'position' => array (
+                    'id_option'    => 'stbar_position',
+                    'label_option' => esc_html__('Positioned', 'simple-top-bar'),
+                    'type_option'  => 'radio',
+                    'radio_options'=> $this->stbar_get_position(),
+                    'validate'     => array(
+                        'required' => true,
+                    ),
                 ),
                 'border radius' => array (
                     'id_option'    => 'stbar_border_radius',
@@ -76,27 +94,6 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     'label_option' => esc_html__('Delete options when plugin deactivate', 'simple-top-bar'),
                     'type_option'  => 'checkbox',
                     'helper'       => esc_html__('If option enable all options will be deleted when plugin deactivate ', 'simple-top-bar'),
-                ),
-            );
-
-            $value_options_position = array(
-                'placement' => array (
-                    'id_option'    => 'stbar_placement',
-                    'label_option' => esc_html__('Placement', 'simple-top-bar'),
-                    'type_option'  => 'radio',
-                    'radio_options'=> $this->stbar_get_top_bottom(),
-                    'validate'     => array(
-                        'required' => true,
-                    ),
-                ),
-                'position' => array (
-                    'id_option'    => 'stbar_position',
-                    'label_option' => esc_html__('Positioned', 'simple-top-bar'),
-                    'type_option'  => 'radio',
-                    'radio_options'=> $this->stbar_get_position(),
-                    'validate'     => array(
-                        'required' => true,
-                    ),
                 ),
             );
 
@@ -203,7 +200,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
                     'label_option' => esc_html__('Font bold', 'simple-top-bar'),
                     'type_option'  => 'select',
                     'select_options'=> $this->stbar_get_font_bold(),
-                    'helper'       => esc_html__("Font bold. min 100(thin), max 900(bold) ", 'simple-top-bar'),
+                    'helper'       => $this->stbar_get_license()// esc_html__("Font bold. min 100(thin), max 900(bold) ", 'simple-top-bar'),
                 ),
                 'font_style' => array (
                     'id_option'    => 'stbar_style',
@@ -219,13 +216,11 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             return (array) array(
                 'tab_general' => $this->stbar_set_tab_data('stbar_section_id', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options, 'stbar_register_options', esc_html__( 'General', 'simple-top-bar' )),
 
-                'tab_general_position' => $this->stbar_set_tab_data( 'stbar_section_id_position', $this->stbar_option_group, 'stbar_bd','stbar_page_slug', $value_options_position, 'stbar_register_options_position', esc_html__( 'Bar position', 'simple-top-bar' )), 
-
                 'tab_laptop' => $this->stbar_set_tab_data( 'stbar_section_id_laptop', $this->stbar_option_group_laptop,'stbar_bd_laptop', $this->stbar_page_slug_laptop, $value_options_laptop, 'stbar_register_options_laptop', esc_html__( 'Screen width > 576px', 'simple-top-bar' )),
 
                 'tab_tel' => $this->stbar_set_tab_data('stbar_section_id_tel',$this->stbar_option_group_tel, 'stbar_bd_tel', $this->stbar_page_slug_tel, $value_options_tel,'stbar_register_options_tel', esc_html__( 'Screen width < 576px', 'simple-top-bar' )),
  
-                //'tab_pro' => $this->stbar_set_tab_data( 'stbar_section_id_pro', $this->stbar_option_group_pro, 'stbar_bd_pro',$this->stbar_page_slug_pro, $value_options_pro, 'stbar_register_options_pro', esc_html__( 'Pro settings', 'simple-top-bar' ))
+                'tab_pro' => $this->stbar_set_tab_data( 'stbar_section_id_pro', $this->stbar_option_group_pro, 'stbar_bd_pro',$this->stbar_page_slug_pro, $value_options_pro, 'stbar_register_options_pro', esc_html__( 'Pro settings', 'simple-top-bar' ))
             );
         }
 
@@ -257,7 +252,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
 
                 'on_phone'  => $this->stbar_set_tab(esc_html__( 'Screen width < 576px',   'simple-top-bar' ), $this->stbar_option_group_tel, $this->stbar_page_slug_tel),
 
-                //'pro'       => $this->stbar_set_tab(esc_html__( 'PRO',   'simple-top-bar' ), $this->stbar_option_group_pro, $this->stbar_page_slug_pro)
+                'pro'       => $this->stbar_set_tab(esc_html__( 'PRO',   'simple-top-bar' ), $this->stbar_option_group_pro, $this->stbar_page_slug_pro)
             );
         }
 
@@ -350,6 +345,7 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
             return $val;
         }
 
+
         public function stbar_admin_style() :void{
             wp_enqueue_style( 'stbar_admin', plugins_url( 'admin/css/stbar_admin.css', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION);
             wp_enqueue_script( 'stbar_admin', plugins_url( 'admin/js/stbar_admin.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
@@ -357,8 +353,35 @@ if( ! class_exists( 'STBAR_ADMIN_MAIN' ) ) {
 
         public function stbar_admin_run() :void{
             add_action( 'admin_enqueue_scripts',  array($this, 'stbar_admin_style') );
+            $lk = $this->stbar_get_license();
             require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_settings.php';
-            $tmp = new STBAR_option_settings( $this->stbar_set_option(), $this->stbar_set_tabs() );
+            $tmp = new STBAR_option_settings( $this->stbar_set_option(), $this->stbar_set_tabs(), $lk );
+        }
+
+
+
+        private function stbar_get_license() {
+//return;
+            $license_key = '1234356';
+            //$response = wp_remote_get( 'https://www.gomgal.lviv.ua/topBarlicensekey/?key=' . $license_key );
+            $response = wp_remote_post( 'https://www.gomgal.lviv.ua/topBarlicensekey/'.$license_key );
+
+            //print_r($response);
+            // Перевіряємо відповідь від сервера
+            if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+                return false; // Помилка при з'єднанні з сервером
+            }
+
+            // Отримуємо тіло відповіді
+            $body = wp_remote_retrieve_body( $response );
+
+            // Перевіряємо, чи ключ є дійсним
+            if ( $body === 'valid 1234356aa' ) {
+                echo "<br>".$body;
+                return true; // Ключ є правомірним
+            }
+            echo "<br>".$body;
+            return false;//.$body; // Ключ не є дійсним
         }
     }
 }
