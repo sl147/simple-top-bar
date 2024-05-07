@@ -4,7 +4,7 @@ Tags: topbar
 Requires PHP: 7.2
 Requires at least: 3.8
 Tested up to: 6.5
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,9 @@ Don't waste time, install Simple Top Bar today and make your site more attractiv
 To use the Simple Top Bar install this plugin and set settings only.
 
 == Changelog ==
+
+=  1.4.5 (2024-05-07) =
+* Fixed displaying icons in the browsers Firefox, Chrome
 
 =  1.4.4 (2024-05-03) =
 * Fixed some bugs in the plugin's code

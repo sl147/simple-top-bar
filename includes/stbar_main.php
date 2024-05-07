@@ -11,10 +11,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
             $val_general = get_option('stbar_bd');
             $val_tel     = get_option('stbar_bd_tel');
             $val_laptop  = get_option('stbar_bd_laptop');
-            $val_pro     = get_option('stbar_bd_pro');
 
-            if(  is_user_logged_in() && ( 'Unregistered users' == $val_pro['stbar_users'] ) ) return;
-            if( !is_user_logged_in() && (  'Registered users'  == $val_pro['stbar_users'] ) ) return;
             if( ! intval($val_general['stbar_active']) ) return;
 
             if( ( 'stbar_text_option' == sanitize_text_field( $_COOKIE["stbar_cookies"] ) ) && ( ! intval( $val_general['stbar_active_permanently'])) ) return;
@@ -47,6 +44,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                 
             $set_shortcode .= '
                 <style>
+
                     .stbar_notice {
                         color:' . sanitize_text_field($val_general['stbar_font_color']) .';
                         font-size:' . intval($val_laptop['stbar_font_size']) . 'px;
@@ -55,11 +53,6 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
                         z-index:99999;
                         width:' . intval($val_laptop['stbar_block_width_laptop']) . '%;
                         border-radius:' . intval($val_general['stbar_border_radius']) . 'px;';
-
-            $set_shortcode .= 'opacity:' .intval($val_pro['stbar_opacity'])/100 . ';
-                font-style:' . sanitize_text_field($val_pro['stbar_style']) . ';
-                font-family:' . sanitize_text_field($val_pro['stbar_family']) . ';
-                font-weight:' . intval($val_pro['stbar_bold']) . ';';
                 
             $set_shortcode .= 'position:' . sanitize_text_field($val_general['stbar_position']) . ';
                         ';
@@ -87,6 +80,7 @@ if( ! class_exists( 'STBAR_MAIN' ) ) {
         }
 
         public function stbar_style(){
+            wp_enqueue_style( 'dashicons' );
             wp_enqueue_style( 'stbar_css', plugins_url( 'public/css/stbar.css', dirname(__FILE__) ) , array(), STBAR_PLUGIN_VERSION);
             wp_enqueue_script( 'stbar_js', plugins_url( 'public/js/stbar.js', dirname(__FILE__) ), array(), STBAR_PLUGIN_VERSION, true );
         }

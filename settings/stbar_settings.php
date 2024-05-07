@@ -7,10 +7,9 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 	     * @param stbar_data  array data in tabs   
 	     * @param $tabs array plugin's tabs
 	     */	      	
-		function __construct( array $stbar_data, array $tabs, $lk) {
+		function __construct( array $stbar_data, array $tabs) {
 			$this->stbar_data            = $stbar_data;
-			$this->tabs                  = $tabs;
-			$this->lk                    = $lk;			
+			$this->tabs                  = $tabs;			
 			$this->stbar_page_slug       = 'stbar_page_slug';
 			$this->stbar_settings_errors = 'stbar_settings_errors';
 
@@ -126,10 +125,6 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_radio.php';
 				$tmp = new Stbar_class_settings_radio( $value_options );
 				echo $tmp->stbar_input_radio( $val, $index, esc_attr( $settings_bd ) );
-			}elseif( 'select' == $type){
-				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_select.php';
-				$tmp = new Stbar_class_settings_select( $value_options );
-				echo $tmp->stbar_input_select( $val, $index, esc_attr( $settings_bd ) );
 			}else{
 				require_once STBAR_PLUGIN_DIR_PATH . 'settings/stbar_class_settings_TENCDRT.php';
 				$tmp = new Stbar_class_settings_TENCDRT( $value_options );
@@ -184,23 +179,13 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 		private function stbar_list_tabs(string $current) :string{
 			$html = "";
 			foreach( $this->tabs as $tab => $value ){
-				if ( ($tab == 'pro') && !$this->lk) {
-					$html .= sprintf(
-		        	"<a class='stbar_tabs_non stbar_tabs nav-tab %s' href='?page=%s&tab=%s'>%s</a>",
-		        	( $tab == $current ) ? 'stbar_active nav-tab-active' : '',
-		        	$this->stbar_page_slug,
-		        	$tab,
-		        	"PRO version"//sanitize_text_field($value['title'])
-		        );
-				}else {
 		        $html .= sprintf(
 		        	"<a class='stbar_tabs nav-tab %s' href='?page=%s&tab=%s'>%s</a>",
 		        	( $tab == $current ) ? 'stbar_active nav-tab-active' : '',
 		        	$this->stbar_page_slug,
 		        	$tab,
 		        	sanitize_text_field($value['title'])
-		        );
-		        }     
+		        );          
 		    }
 		    return (string) $html;
 		}
@@ -221,8 +206,6 @@ if( ! class_exists( 'STBAR_option_settings' ) ) {
 		    foreach( $this->tabs as $tab => $value ) {
 		    	if ($tab == $current) $this->display_tab($value['group'], $value['page_slug']);
 		    }
-		    
-			printf(	esc_html__('Shown on the site %d ','simple-top-bar' ),	get_option('stbar_view'));
 		}
 
 	    /**
